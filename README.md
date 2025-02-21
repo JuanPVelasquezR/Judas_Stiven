@@ -1,4 +1,4 @@
-lksnglkn:
+Equipo 3:
 
 Stiven Lopera
 Marlon Bedoya
