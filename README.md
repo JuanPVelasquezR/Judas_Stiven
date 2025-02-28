@@ -1,4 +1,4 @@
-Equipo 3:
+Equipo tres:
 
 -Stiven Lopera
 
