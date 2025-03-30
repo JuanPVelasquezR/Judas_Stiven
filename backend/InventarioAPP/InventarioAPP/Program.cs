@@ -3,7 +3,7 @@ using InventarioAPP.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Agregar la conexión a la base de datos
+
 builder.Services.AddDbContext<InventarioTecnologiaContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -11,7 +11,6 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Configuración del pipeline de la aplicación
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
