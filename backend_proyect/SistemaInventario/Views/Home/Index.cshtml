@@ -1,0 +1,88 @@
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<section class="full-width text-center" style="padding: 40px 0;">
+    <h3 class="text-center tittles">PANEL DE CONTROL</h3>
+    <!-- Tiles -->
+    <article class="full-width tile">
+        <div class="tile-text">
+            <span class="text-condensedLight">
+                @ViewBag.TotalCategorias<br>
+                <small>Categorías</small>
+            </span>
+        </div>
+        <i class="zmdi zmdi-label tile-icon"></i>
+    </article>
+    <article class="full-width tile">
+        <div class="tile-text">
+            <span class="text-condensedLight">
+                @ViewBag.TotalClientes<br>
+                <small>Clientes</small>
+            </span>
+        </div>
+        <i class="zmdi zmdi-accounts tile-icon"></i>
+    </article>
+    <article class="full-width tile">
+        <div class="tile-text">
+            <span class="text-condensedLight">
+                @ViewBag.TotalProveedores<br>
+                <small>Proveedores</small>
+            </span>
+        </div>
+        <i class="zmdi zmdi-truck tile-icon"></i>
+    </article>
+    <article class="full-width tile">
+        <div class="tile-text">
+            <span class="text-condensedLight">
+                @ViewBag.TotalProductos<br>
+                <small>Productos</small>
+            </span>
+        </div>
+        <i class="zmdi zmdi-washing-machine tile-icon"></i>
+    </article>
+</section>
+
+<section class="full-width" style="margin: 30px 0;">
+    <h3 class="text-center tittles">ÚLTIMOS MOVIMIENTOS</h3>
+    <!-- TimeLine -->
+    <div id="timeline-c" class="timeline-c">
+        @if (ViewBag.UltimosMovimientos != null && ViewBag.UltimosMovimientos.Count > 0)
+        {
+            @foreach (var movimiento in ViewBag.UltimosMovimientos)
+            {
+                <div class="timeline-c-box">
+                    <div class="timeline-c-box-icon bg-info">
+                        <i class="zmdi zmdi-trending-up"></i>
+                    </div>
+                    <div class="timeline-c-box-content">
+                        <h4 class="text-center text-condensedLight">@movimiento.TipoMovimiento.Nombre</h4>
+                        <p class="text-center">
+                            Estado: @movimiento.Estado<br>
+                            @if (!string.IsNullOrEmpty(movimiento.Observaciones))
+                            {
+                                @movimiento.Observaciones
+                            }
+                        </p>
+                        <span class="timeline-date"><i class="zmdi zmdi-calendar-note zmdi-hc-fw"></i>@movimiento.Fecha.ToString("dd-MM-yyyy HH:mm")</span>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="timeline-c-box">
+                <div class="timeline-c-box-icon bg-info">
+                    <i class="zmdi zmdi-info-outline"></i>
+                </div>
+                <div class="timeline-c-box-content">
+                    <h4 class="text-center text-condensedLight">No hay movimientos recientes</h4>
+                    <p class="text-center">
+                        No se han registrado movimientos de inventario recientemente.
+                    </p>
+                    <span class="timeline-date"><i class="zmdi zmdi-calendar-note zmdi-hc-fw"></i>@DateTime.Now.ToString("dd-MM-yyyy")</span>
+                </div>
+            </div>
+        }
+    </div>
+</section>

@@ -1,0 +1,80 @@
+@{
+    ViewData["Title"] = "Iniciar Sesión";
+    Layout = "_Layout";
+}
+
+<div class="login-wrap cover">
+    <div class="container-login">
+        <p class="text-center" style="font-size: 80px;">
+            <i class="zmdi zmdi-account-circle"></i>
+        </p>
+        <p class="text-center text-condensedLight">Iniciar Sesión</p>
+        
+        @if (ViewData["Error"] != null)
+        {
+            <div class="alert-error">
+                <p>@ViewData["Error"]</p>
+            </div>
+        }
+        
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert-error">
+                <p>@TempData["ErrorMessage"]</p>
+            </div>
+        }
+        
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert-success">
+                <p>@TempData["SuccessMessage"]</p>
+            </div>
+        }
+        
+        <form asp-controller="Account" asp-action="Login" method="post">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="usuario" name="usuario">
+                <label class="mdl-textfield__label" for="usuario">Usuario</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="password" id="contraseña" name="contraseña">
+                <label class="mdl-textfield__label" for="contraseña">Contraseña</label>
+            </div>
+            <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect" style="color: #3F51B5; margin: 0 auto; display: block;">
+                INICIAR SESIÓN
+            </button>
+            
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--12-col text-center">
+                    <a asp-action="ForgotPassword" class="login-link" style="color: #3F51B5; text-decoration: none; font-size: 14px;">
+                        ¿Olvidaste tu contraseña?
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .alert-error {
+        background-color: #f44336;
+        color: white;
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .alert-success {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .login-link:hover {
+        text-decoration: underline !important;
+    }
+</style>

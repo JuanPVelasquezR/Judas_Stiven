@@ -1,0 +1,123 @@
+@model SistemaInventario.Models.Entities.Rol
+
+@{
+    ViewData["Title"] = "Gestionar Permisos";
+    var assignedPermisos = ViewData["AssignedPermisos"] as List<SistemaInventario.Models.Entities.Permiso>;
+    var unassignedPermisos = ViewData["UnassignedPermisos"] as List<SistemaInventario.Models.Entities.Permiso>;
+}
+
+<section class="full-width header-well">
+    <div class="full-width header-well-icon">
+        <i class="zmdi zmdi-key"></i>
+    </div>
+    <div class="full-width header-well-text">
+        <p class="text-condensedLight">
+            Gestione los permisos asignados al rol @Model.Nombre.
+        </p>
+    </div>
+</section>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col">
+        <div class="full-width panel mdl-shadow--2dp">
+            <div class="full-width panel-tittle bg-primary text-center tittles">
+                Gestionar Permisos - @Model.Nombre
+            </div>
+            <div class="full-width panel-content">
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--6-col">
+                        <div class="full-width panel mdl-shadow--2dp">
+                            <div class="full-width panel-tittle bg-success text-center tittles">
+                                Permisos Asignados
+                            </div>
+                            <div class="full-width panel-content">
+                                <div class="mdl-list">
+                                    @if (assignedPermisos != null && assignedPermisos.Any())
+                                    {
+                                        @foreach (var permiso in assignedPermisos)
+                                        {
+                                            <div class="mdl-list__item">
+                                                <span class="mdl-list__item-primary-content">
+                                                    <i class="zmdi zmdi-key mdl-list__item-avatar"></i>
+                                                    <span>@permiso.Nombre</span>
+                                                    <span class="mdl-list__item-sub-title">@permiso.Codigo</span>
+                                                </span>
+                                                <div class="mdl-list__item-secondary-content">
+                                                    <form asp-action="RemovePermission" method="post">
+                                                        <input type="hidden" name="idRol" value="@Model.IdRol" />
+                                                        <input type="hidden" name="idPermiso" value="@permiso.IdPermiso" />
+                                                        <button type="submit" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color--red">
+                                                            <i class="zmdi zmdi-delete"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <li class="full-width divider-menu-h"></li>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <div class="mdl-list__item">
+                                            <span class="mdl-list__item-primary-content">
+                                                <i class="zmdi zmdi-alert-circle mdl-list__item-avatar"></i>
+                                                <span>No hay permisos asignados</span>
+                                            </span>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col">
+                        <div class="full-width panel mdl-shadow--2dp">
+                            <div class="full-width panel-tittle bg-warning text-center tittles">
+                                Permisos Disponibles
+                            </div>
+                            <div class="full-width panel-content">
+                                <div class="mdl-list">
+                                    @if (unassignedPermisos != null && unassignedPermisos.Any())
+                                    {
+                                        @foreach (var permiso in unassignedPermisos)
+                                        {
+                                            <div class="mdl-list__item">
+                                                <span class="mdl-list__item-primary-content">
+                                                    <i class="zmdi zmdi-key mdl-list__item-avatar"></i>
+                                                    <span>@permiso.Nombre</span>
+                                                    <span class="mdl-list__item-sub-title">@permiso.Codigo</span>
+                                                </span>
+                                                <div class="mdl-list__item-secondary-content">
+                                                    <form asp-action="AssignPermission" method="post">
+                                                        <input type="hidden" name="idRol" value="@Model.IdRol" />
+                                                        <input type="hidden" name="idPermiso" value="@permiso.IdPermiso" />
+                                                        <button type="submit" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color--green">
+                                                            <i class="zmdi zmdi-plus"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <li class="full-width divider-menu-h"></li>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <div class="mdl-list__item">
+                                            <span class="mdl-list__item-primary-content">
+                                                <i class="zmdi zmdi-alert-circle mdl-list__item-avatar"></i>
+                                                <span>No hay permisos disponibles</span>
+                                            </span>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center">
+                    <a asp-action="Index" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                        <i class="zmdi zmdi-arrow-left"></i> Volver a la Lista
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
