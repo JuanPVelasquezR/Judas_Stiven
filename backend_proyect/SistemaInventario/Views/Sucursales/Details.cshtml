@@ -1,0 +1,61 @@
+@model SistemaInventario.Models.Entities.Sucursal
+
+@{
+    ViewData["Title"] = "Detalles de la Sucursal";
+}
+
+<section class="full-width header-well">
+    <div class="full-width header-well-icon">
+        <i class="zmdi zmdi-store"></i>
+    </div>
+    <div class="full-width header-well-text">
+        <p class="text-condensedLight">
+            Detalles completos de la sucursal seleccionada.
+        </p>
+    </div>
+</section>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col">
+        <div class="full-width panel mdl-shadow--2dp">
+            <div class="full-width panel-tittle bg-primary text-center tittles">
+                Detalles de la Sucursal
+            </div>
+            <div class="full-width panel-content">
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; INFORMACIÓN BÁSICA</legend><br>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                        <h5><strong>ID:</strong></h5>
+                        <p>@Model.IdSucursal</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                        <h5><strong>Nombre:</strong></h5>
+                        <p>@Model.Nombre</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
+                        <h5><strong>Dirección:</strong></h5>
+                        <p>@Model.Direccion</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                        <h5><strong>Teléfono:</strong></h5>
+                        <p>@Model.Telefono</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                        <h5><strong>Encargado:</strong></h5>
+                        <p>@Model.Encargado</p>
+                    </div>
+                </div>
+                <p class="text-center">
+                    <a asp-action="Edit" asp-route-id="@Model.IdSucursal" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored bg-primary">
+                        <i class="zmdi zmdi-edit"></i> Editar
+                    </a>
+                    <a asp-action="Index" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                        <i class="zmdi zmdi-arrow-left"></i> Volver a la Lista
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

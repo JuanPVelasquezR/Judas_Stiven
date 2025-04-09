@@ -1,0 +1,70 @@
+@model SistemaInventario.Models.Entities.Sucursal
+
+@{
+    ViewData["Title"] = "Editar Sucursal";
+}
+
+<section class="full-width header-well">
+    <div class="full-width header-well-icon">
+        <i class="zmdi zmdi-store"></i>
+    </div>
+    <div class="full-width header-well-text">
+        <p class="text-condensedLight">
+            Edite la información de la sucursal seleccionada.
+        </p>
+    </div>
+</section>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col">
+        <div class="full-width panel mdl-shadow--2dp">
+            <div class="full-width panel-tittle bg-primary text-center tittles">
+                Editar Sucursal
+            </div>
+            <div class="full-width panel-content">
+                <form asp-action="Edit" method="post">
+                    <input type="hidden" asp-for="IdSucursal" />
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; DATOS DE LA SUCURSAL</legend><br>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" pattern="-?[A-Za-záéíóúÁÉÍÓÚñÑ ]*(\.[0-9]+)?" id="Nombre" name="Nombre" asp-for="Nombre" required>
+                                <label class="mdl-textfield__label" for="Nombre">Nombre</label>
+                                <span class="mdl-textfield__error">Nombre inválido</span>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="Direccion" name="Direccion" asp-for="Direccion">
+                                <label class="mdl-textfield__label" for="Direccion">Dirección</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="tel" pattern="-?[0-9+() ]*(\.[0-9]+)?" id="Telefono" name="Telefono" asp-for="Telefono">
+                                <label class="mdl-textfield__label" for="Telefono">Teléfono</label>
+                                <span class="mdl-textfield__error">Teléfono inválido</span>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="Encargado" name="Encargado" asp-for="Encargado">
+                                <label class="mdl-textfield__label" for="Encargado">Encargado</label>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-center">
+                        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored bg-primary">
+                            <i class="zmdi zmdi-save"></i> Guardar Cambios
+                        </button>
+                        <a asp-action="Index" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                            <i class="zmdi zmdi-arrow-left"></i> Volver a la Lista
+                        </a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+@model IEnumerable<SistemaInventario.Models.Entities.Sucursal>
+
+@{
+    ViewData["Title"] = "Sucursales";
+}
+
+<section class="full-width header-well">
+    <div class="full-width header-well-icon">
+        <i class="zmdi zmdi-store"></i>
+    </div>
+    <div class="full-width header-well-text">
+        <p class="text-condensedLight">
+            Gestión de sucursales del sistema de inventario. Aquí puede agregar, editar y eliminar sucursales.
+        </p>
+    </div>
+</section>
+
+<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+    <div class="mdl-tabs__tab-bar">
+        <a href="#tabNewBranch" class="mdl-tabs__tab is-active">NUEVA</a>
+        <a href="#tabListBranches" class="mdl-tabs__tab">LISTA</a>
+    </div>
+    <div class="mdl-tabs__panel is-active" id="tabNewBranch">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col">
+                <div class="full-width panel mdl-shadow--2dp">
+                    <div class="full-width panel-tittle bg-primary text-center tittles">
+                        Nueva Sucursal
+                    </div>
+                    <div class="full-width panel-content">
+                        <form asp-action="Create" method="post">
+                            <div class="mdl-grid">
+                                <div class="mdl-cell mdl-cell--12-col">
+                                    <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; DATOS DE LA SUCURSAL</legend><br>
+                                </div>
+                                <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" pattern="-?[A-Za-záéíóúÁÉÍÓÚñÑ ]*(\.[0-9]+)?" id="Nombre" name="Nombre" required>
+                                        <label class="mdl-textfield__label" for="Nombre">Nombre</label>
+                                        <span class="mdl-textfield__error">Nombre inválido</span>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" id="Direccion" name="Direccion">
+                                        <label class="mdl-textfield__label" for="Direccion">Dirección</label>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="tel" pattern="-?[0-9+() ]*(\.[0-9]+)?" id="Telefono" name="Telefono">
+                                        <label class="mdl-textfield__label" for="Telefono">Teléfono</label>
+                                        <span class="mdl-textfield__error">Teléfono inválido</span>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" id="Encargado" name="Encargado">
+                                        <label class="mdl-textfield__label" for="Encargado">Encargado</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-center">
+                                <button type="submit" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary">
+                                    <i class="zmdi zmdi-plus"></i>
+                                </button>
+                                <div class="mdl-tooltip" for="btn-addBranch">Agregar sucursal</div>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-tabs__panel" id="tabListBranches">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+                <div class="full-width panel mdl-shadow--2dp">
+                    <div class="full-width panel-tittle bg-success text-center tittles">
+                        Lista de Sucursales
+                    </div>
+                    <div class="full-width panel-content">
+                        <div class="mdl-list">
+                            @foreach (var item in Model)
+                            {
+                                <div class="mdl-list__item mdl-list__item--two-line">
+                                    <span class="mdl-list__item-primary-content">
+                                        <i class="zmdi zmdi-store mdl-list__item-avatar"></i>
+                                        <span>@item.IdSucursal. @item.Nombre</span>
+                                        <span class="mdl-list__item-sub-title">Encargado: @item.Encargado | Tel: @item.Telefono</span>
+                                    </span>
+                                    <div class="mdl-list__item-secondary-content">
+                                        <a asp-action="Edit" asp-route-id="@item.IdSucursal" class="mdl-list__item-secondary-action" title="Editar"><i class="zmdi zmdi-edit"></i></a>
+                                        <a asp-action="Details" asp-route-id="@item.IdSucursal" class="mdl-list__item-secondary-action" title="Detalles"><i class="zmdi zmdi-info"></i></a>
+                                        <a asp-action="Delete" asp-route-id="@item.IdSucursal" class="mdl-list__item-secondary-action" title="Eliminar"><i class="zmdi zmdi-delete"></i></a>
+                                    </div>
+                                </div>
+                                <li class="full-width divider-menu-h"></li>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

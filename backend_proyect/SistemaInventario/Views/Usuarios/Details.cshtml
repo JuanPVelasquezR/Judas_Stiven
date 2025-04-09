@@ -1,0 +1,57 @@
+@model SistemaInventario.Models.Entities.Usuario
+
+@{
+    ViewData["Title"] = "Detalles del Usuario";
+}
+
+<section class="full-width header-well">
+    <div class="full-width header-well-icon">
+        <i class="zmdi zmdi-account"></i>
+    </div>
+    <div class="full-width header-well-text">
+        <p class="text-condensedLight">
+            Detalles completos del usuario seleccionado.
+        </p>
+    </div>
+</section>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col">
+        <div class="full-width panel mdl-shadow--2dp">
+            <div class="full-width panel-tittle bg-primary text-center tittles">
+                Detalles del Usuario
+            </div>
+            <div class="full-width panel-content">
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; INFORMACIÓN BÁSICA</legend><br>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                        <h5><strong>ID:</strong></h5>
+                        <p>@Model.IdUsuario</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                        <h5><strong>Nombre:</strong></h5>
+                        <p>@Model.Nombre</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                        <h5><strong>Usuario:</strong></h5>
+                        <p>@Model.NombreUsuario</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                        <h5><strong>Rol:</strong></h5>
+                        <p>@Model.Rol.Nombre</p>
+                    </div>
+                </div>
+                <p class="text-center">
+                    <a asp-action="Edit" asp-route-id="@Model.IdUsuario" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored bg-primary">
+                        <i class="zmdi zmdi-edit"></i> Editar
+                    </a>
+                    <a asp-action="Index" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                        <i class="zmdi zmdi-arrow-left"></i> Volver a la Lista
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+@model SistemaInventario.Models.Entities.Producto
+
+@{
+    ViewData["Title"] = "Detalles del Producto";
+}
+
+<section class="full-width header-well">
+    <div class="full-width header-well-icon">
+        <i class="zmdi zmdi-washing-machine"></i>
+    </div>
+    <div class="full-width header-well-text">
+        <p class="text-condensedLight">
+            Detalles completos del producto seleccionado.
+        </p>
+    </div>
+</section>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col">
+        <div class="full-width panel mdl-shadow--2dp">
+            <div class="full-width panel-tittle bg-primary text-center tittles">
+                Detalles del Producto
+            </div>
+            <div class="full-width panel-content">
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; INFORMACIÓN BÁSICA</legend><br>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                        <h5><strong>ID:</strong></h5>
+                        <p>@Model.IdProducto</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                        <h5><strong>Nombre:</strong></h5>
+                        <p>@Model.Nombre</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
+                        <h5><strong>Descripción:</strong></h5>
+                        <p>@Model.Descripcion</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                        <h5><strong>Precio de Compra:</strong></h5>
+                        <p>$@Model.PrecioCompra</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                        <h5><strong>Precio de Venta:</strong></h5>
+                        <p>$@Model.PrecioVenta</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; CATEGORÍA</legend><br>
+                    </div>
+                    <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
+                        <h5><strong>Categoría:</strong></h5>
+                        <p>@Model.Categoria.Nombre</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; DATOS DEL PROVEEDOR</legend><br>
+                    </div>
+                    <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
+                        <h5><strong>Proveedor:</strong></h5>
+                        <p>@Model.Proveedor.Nombre</p>
+                    </div>
+                </div>
+                <p class="text-center">
+                    <a asp-action="Edit" asp-route-id="@Model.IdProducto" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored bg-primary">
+                        <i class="zmdi zmdi-edit"></i> Editar
+                    </a>
+                    <a asp-action="Index" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                        <i class="zmdi zmdi-arrow-left"></i> Volver a la Lista
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

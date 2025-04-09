@@ -1,0 +1,80 @@
+@model SistemaInventario.Models.Entities.Rol
+
+@{
+    ViewData["Title"] = "Detalles del Rol";
+}
+
+<section class="full-width header-well">
+    <div class="full-width header-well-icon">
+        <i class="zmdi zmdi-shield-security"></i>
+    </div>
+    <div class="full-width header-well-text">
+        <p class="text-condensedLight">
+            Detalles completos del rol seleccionado.
+        </p>
+    </div>
+</section>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col">
+        <div class="full-width panel mdl-shadow--2dp">
+            <div class="full-width panel-tittle bg-primary text-center tittles">
+                Detalles del Rol
+            </div>
+            <div class="full-width panel-content">
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; INFORMACIÓN BÁSICA</legend><br>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                        <h5><strong>ID:</strong></h5>
+                        <p>@Model.IdRol</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                        <h5><strong>Nombre:</strong></h5>
+                        <p>@Model.Nombre</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <legend class="text-condensedLight"><i class="zmdi zmdi-key"></i> &nbsp; PERMISOS ASIGNADOS</legend><br>
+                    </div>
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <ul class="mdl-list">
+                            @if (Model.RolesPermisos != null && Model.RolesPermisos.Any())
+                            {
+                                @foreach (var rolPermiso in Model.RolesPermisos)
+                                {
+                                    <li class="mdl-list__item">
+                                        <span class="mdl-list__item-primary-content">
+                                            <i class="zmdi zmdi-key mdl-list__item-icon"></i>
+                                            @rolPermiso.Permiso.Nombre (@rolPermiso.Permiso.Codigo)
+                                        </span>
+                                    </li>
+                                }
+                            }
+                            else
+                            {
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                        <i class="zmdi zmdi-alert-circle mdl-list__item-icon"></i>
+                                        No hay permisos asignados a este rol.
+                                    </span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <p class="text-center">
+                    <a asp-action="Edit" asp-route-id="@Model.IdRol" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored bg-primary">
+                        <i class="zmdi zmdi-edit"></i> Editar
+                    </a>
+                    <a asp-action="ManagePermissions" asp-route-id="@Model.IdRol" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored bg-success">
+                        <i class="zmdi zmdi-key"></i> Gestionar Permisos
+                    </a>
+                    <a asp-action="Index" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                        <i class="zmdi zmdi-arrow-left"></i> Volver a la Lista
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

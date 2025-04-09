@@ -1,0 +1,68 @@
+@model SistemaInventario.Models.Entities.Proveedor
+
+@{
+    ViewData["Title"] = "Eliminar Proveedor";
+}
+
+<section class="full-width header-well">
+    <div class="full-width header-well-icon">
+        <i class="zmdi zmdi-truck"></i>
+    </div>
+    <div class="full-width header-well-text">
+        <p class="text-condensedLight">
+            ¿Está seguro que desea eliminar este proveedor?
+        </p>
+    </div>
+</section>
+
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col">
+        <div class="full-width panel mdl-shadow--2dp">
+            <div class="full-width panel-tittle bg-danger text-center tittles">
+                Eliminar Proveedor
+            </div>
+            <div class="full-width panel-content">
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; INFORMACIÓN DEL PROVEEDOR</legend><br>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                        <h5><strong>ID:</strong></h5>
+                        <p>@Model.IdProveedor</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                        <h5><strong>Nombre:</strong></h5>
+                        <p>@Model.Nombre</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
+                        <h5><strong>Dirección:</strong></h5>
+                        <p>@Model.Direccion</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                        <h5><strong>Teléfono:</strong></h5>
+                        <p>@Model.Telefono</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                        <h5><strong>Email:</strong></h5>
+                        <p>@Model.Email</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
+                        <h5><strong>Contacto Principal:</strong></h5>
+                        <p>@Model.ContactoPrincipal</p>
+                    </div>
+                </div>
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" asp-for="IdProveedor" />
+                    <p class="text-center">
+                        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored bg-danger">
+                            <i class="zmdi zmdi-delete"></i> Confirmar Eliminación
+                        </button>
+                        <a asp-action="Index" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                            <i class="zmdi zmdi-arrow-left"></i> Volver a la Lista
+                        </a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

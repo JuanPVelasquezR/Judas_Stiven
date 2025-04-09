@@ -1,0 +1,127 @@
+@model IEnumerable<SistemaInventario.Models.Entities.Producto>
+
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<section class="full-width header-well">
+    <div class="full-width header-well-icon">
+        <i class="zmdi zmdi-washing-machine"></i>
+    </div>
+    <div class="full-width header-well-text">
+        <p class="text-condensedLight">
+            Gestión de productos del sistema de inventario. Aquí puede agregar, editar y eliminar productos.
+        </p>
+    </div>
+</section>
+
+<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+    <div class="mdl-tabs__tab-bar">
+        <a href="#tabNewProduct" class="mdl-tabs__tab is-active">NUEVO</a>
+        <a href="#tabListProducts" class="mdl-tabs__tab">LISTA</a>
+    </div>
+    <div class="mdl-tabs__panel is-active" id="tabNewProduct">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col">
+                <div class="full-width panel mdl-shadow--2dp">
+                    <div class="full-width panel-tittle bg-primary text-center tittles">
+                        Nuevo Producto
+                    </div>
+                    <div class="full-width panel-content">
+                        <form asp-action="Create" method="post">
+                            <div class="mdl-grid">
+                                <div class="mdl-cell mdl-cell--12-col">
+                                    <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; INFORMACIÓN BÁSICA</legend><br>
+                                </div>
+                                <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" pattern="-?[A-Za-záéíóúÁÉÍÓÚñÑ ]*(\.[0-9]+)?" id="Nombre" name="Nombre" required>
+                                        <label class="mdl-textfield__label" for="Nombre">Nombre</label>
+                                        <span class="mdl-textfield__error">Nombre inválido</span>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" id="Descripcion" name="Descripcion">
+                                        <label class="mdl-textfield__label" for="Descripcion">Descripción</label>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="number" step="0.01" pattern="-?[0-9.]*(\.[0-9]+)?" id="PrecioCompra" name="PrecioCompra" required>
+                                        <label class="mdl-textfield__label" for="PrecioCompra">Precio de Compra</label>
+                                        <span class="mdl-textfield__error">Precio inválido</span>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="number" step="0.01" pattern="-?[0-9.]*(\.[0-9]+)?" id="PrecioVenta" name="PrecioVenta" required>
+                                        <label class="mdl-textfield__label" for="PrecioVenta">Precio de Venta</label>
+                                        <span class="mdl-textfield__error">Precio inválido</span>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--12-col">
+                                    <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; CATEGORÍA</legend><br>
+                                </div>
+                                <div class="mdl-cell mdl-cell--12-col">
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <select class="mdl-textfield__input" id="IdCategoria" name="IdCategoria" asp-items="ViewBag.IdCategoria" required>
+                                            <option value="" disabled selected>Seleccione una categoría</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--12-col">
+                                    <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; DATOS DEL PROVEEDOR</legend><br>
+                                </div>
+                                <div class="mdl-cell mdl-cell--12-col">
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <select class="mdl-textfield__input" id="IdProveedor" name="IdProveedor" asp-items="ViewBag.IdProveedor" required>
+                                            <option value="" disabled selected>Seleccione un proveedor</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-center">
+                                <button type="submit" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary">
+                                    <i class="zmdi zmdi-plus"></i>
+                                </button>
+                                <div class="mdl-tooltip" for="btn-addProduct">Agregar producto</div>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-tabs__panel" id="tabListProducts">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+                <div class="full-width panel mdl-shadow--2dp">
+                    <div class="full-width panel-tittle bg-success text-center tittles">
+                        Lista de Productos
+                    </div>
+                    <div class="full-width panel-content">
+                        <div class="mdl-list">
+                            @foreach (var item in Model)
+                            {
+                                <div class="mdl-list__item mdl-list__item--two-line">
+                                    <span class="mdl-list__item-primary-content">
+                                        <i class="zmdi zmdi-washing-machine mdl-list__item-avatar"></i>
+                                        <span>@item.IdProducto. @item.Nombre</span>
+                                        <span class="mdl-list__item-sub-title">Categoría: @item.Categoria.Nombre | Precio: $@item.PrecioVenta</span>
+                                    </span>
+                                    <div class="mdl-list__item-secondary-content">
+                                        <a asp-action="Edit" asp-route-id="@item.IdProducto" class="mdl-list__item-secondary-action" title="Editar"><i class="zmdi zmdi-edit"></i></a>
+                                        <a asp-action="Details" asp-route-id="@item.IdProducto" class="mdl-list__item-secondary-action" title="Detalles"><i class="zmdi zmdi-info"></i></a>
+                                        <a asp-action="Delete" asp-route-id="@item.IdProducto" class="mdl-list__item-secondary-action" title="Eliminar"><i class="zmdi zmdi-delete"></i></a>
+                                    </div>
+                                </div>
+                                <li class="full-width divider-menu-h"></li>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

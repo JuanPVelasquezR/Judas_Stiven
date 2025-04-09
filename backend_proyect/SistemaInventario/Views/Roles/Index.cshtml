@@ -1,0 +1,87 @@
+@model IEnumerable<SistemaInventario.Models.Entities.Rol>
+
+@{
+    ViewData["Title"] = "Roles";
+}
+
+<section class="full-width header-well">
+    <div class="full-width header-well-icon">
+        <i class="zmdi zmdi-shield-security"></i>
+    </div>
+    <div class="full-width header-well-text">
+        <p class="text-condensedLight">
+            Gestión de roles del sistema. Aquí puede agregar, editar y eliminar roles.
+        </p>
+    </div>
+</section>
+
+<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+    <div class="mdl-tabs__tab-bar">
+        <a href="#tabNewRole" class="mdl-tabs__tab is-active">NUEVO</a>
+        <a href="#tabListRoles" class="mdl-tabs__tab">LISTA</a>
+    </div>
+    <div class="mdl-tabs__panel is-active" id="tabNewRole">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col">
+                <div class="full-width panel mdl-shadow--2dp">
+                    <div class="full-width panel-tittle bg-primary text-center tittles">
+                        Nuevo Rol
+                    </div>
+                    <div class="full-width panel-content">
+                        <form asp-action="Create" method="post">
+                            <div class="mdl-grid">
+                                <div class="mdl-cell mdl-cell--12-col">
+                                    <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; DATOS DEL ROL</legend><br>
+                                </div>
+                                <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" pattern="-?[A-Za-záéíóúÁÉÍÓÚñÑ ]*(\.[0-9]+)?" id="Nombre" name="Nombre" required>
+                                        <label class="mdl-textfield__label" for="Nombre">Nombre del Rol</label>
+                                        <span class="mdl-textfield__error">Nombre inválido</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-center">
+                                <button type="submit" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary">
+                                    <i class="zmdi zmdi-plus"></i>
+                                </button>
+                                <div class="mdl-tooltip" for="btn-addRole">Agregar rol</div>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-tabs__panel" id="tabListRoles">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+                <div class="full-width panel mdl-shadow--2dp">
+                    <div class="full-width panel-tittle bg-success text-center tittles">
+                        Lista de Roles
+                    </div>
+                    <div class="full-width panel-content">
+                        <div class="mdl-list">
+                            @foreach (var item in Model)
+                            {
+                                <div class="mdl-list__item mdl-list__item--two-line">
+                                    <span class="mdl-list__item-primary-content">
+                                        <i class="zmdi zmdi-shield-security mdl-list__item-avatar"></i>
+                                        <span>@item.IdRol. @item.Nombre</span>
+                                    </span>
+                                    <div class="mdl-list__item-secondary-content">
+                                        <a asp-action="Edit" asp-route-id="@item.IdRol" class="mdl-list__item-secondary-action" title="Editar"><i class="zmdi zmdi-edit"></i></a>
+                                        <a asp-action="Details" asp-route-id="@item.IdRol" class="mdl-list__item-secondary-action" title="Detalles"><i class="zmdi zmdi-info"></i></a>
+                                        <a asp-action="Delete" asp-route-id="@item.IdRol" class="mdl-list__item-secondary-action" title="Eliminar"><i class="zmdi zmdi-delete"></i></a>
+                                        <a asp-action="ManagePermissions" asp-route-id="@item.IdRol" class="mdl-list__item-secondary-action" title="Gestionar Permisos"><i class="zmdi zmdi-key"></i></a>
+                                    </div>
+                                </div>
+                                <li class="full-width divider-menu-h"></li>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
